@@ -1,5 +1,5 @@
-import { FC, useRef, useState } from "react";
 import * as React from "react";
+import { FC, useCallback, useRef, useState } from "react";
 import { Button, Upload } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import { UploadFile, UploadManage } from "./class";
@@ -7,6 +7,11 @@ import { UploadFile, UploadManage } from "./class";
 const FlyWeight: FC = () => {
   const [fileList, setFileList] = useState<UploadFile[]>([]);
   const manageRef = useRef(new UploadManage());
+  const uploadFileRef = useRef(new UploadFile());
+
+  const getId = useCallback((index: number) => {
+    return Object.keys(manageRef.current.cache)[index];
+  }, []);
 
   return (
     <>
@@ -16,8 +21,8 @@ const FlyWeight: FC = () => {
         beforeUpload={(file, files) => {
           const manage = manageRef.current;
           manage.add(file.uid, file);
-          const uploadFiles = files.map((item) => {
-            return new UploadFile(item.name, item.uid);
+          const uploadFiles = files.map(() => {
+            return uploadFileRef.current;
           });
           setFileList([...uploadFiles]);
           console.log("ma", manage);
@@ -26,20 +31,20 @@ const FlyWeight: FC = () => {
       >
         <Button icon={<UploadOutlined />}>Upload Directory</Button>
       </Upload>
-      {fileList.map((item) => {
+      {fileList.map((item, index) => {
         return (
-          <div key={item.id}>
-            {item.name}
+          <div key={item.getBaseIf(manageRef.current, getId(index)).uid}>
+            {item.getBaseIf(manageRef.current, getId(index)).name}
             <a
               href="#"
               onClick={() => {
                 const manage = manageRef.current;
-                manage.del(item.id);
-                const index = fileList.findIndex((findItem) => {
-                  return item.id === findItem.id;
+                manage.del(getId(index));
+                const findIndex = fileList.findIndex((findItem) => {
+                  return item.uid === findItem.uid;
                 });
-                if (index !== -1) {
-                  fileList.splice(index, 1);
+                if (findIndex !== -1) {
+                  fileList.splice(findIndex, 1);
                   setFileList([...fileList]);
                 }
                 console.log(manage);
