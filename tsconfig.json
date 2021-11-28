@@ -8,7 +8,7 @@
     "sourceMap": true,
     "declaration": false,
     "downlevelIteration": true,
-    "module": "CommonJS",
+    "module": "ES6",
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
