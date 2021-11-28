@@ -1,13 +1,13 @@
 import { FC } from "react";
 import * as React from "react";
-import { Button } from "antd";
-import './App.scss'
+import "./App.scss";
+import FlyWeight from "./pages/flyweight";
 interface Props {}
 
 const Tree: FC<Props> = () => {
   return (
     <div>
-      <Button type="primary">Primary Button</Button>
+      <FlyWeight />
     </div>
   );
 };
