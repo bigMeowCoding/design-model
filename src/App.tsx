@@ -7,7 +7,7 @@ interface Props {}
 const Tree: FC<Props> = () => {
   return (
     <div>
-      <FlyWeight />
+        sdf
     </div>
   );
 };
