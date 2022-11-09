@@ -1,8 +1,7 @@
 import * as React from "react";
-// import "./styles/index.scss";
-// import "normalize.css";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
 import Bridge from "./src/pages/bridge";
 import Main from "./src/pages";
 
