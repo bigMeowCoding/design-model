@@ -2,13 +2,18 @@ import * as React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import Bridge from "./src/pages/bridge";
+import BridgeMain from "./src/pages/bridge";
+import BuilderMain from "./src/pages/builder";
 import Main from "./src/pages";
 
 const router = createBrowserRouter([
   {
     path: "/bridge",
-    element: <Bridge />,
+    element: <BridgeMain />,
+  },
+  {
+    path: "/builder",
+    element: <BuilderMain />,
   },
   {
     path: "/",

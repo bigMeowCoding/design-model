@@ -41,7 +41,7 @@ class BrandM extends Brand {
   }
 }
 
-const Bridge: FC<Props> = () => {
+const BridgeMain: FC<Props> = () => {
   const n = new BrandN();
   n.setSoftWare(new MobileGame());
   n.run();
@@ -55,4 +55,4 @@ const Bridge: FC<Props> = () => {
   return <div>桥接模式</div>;
 };
 
-export default Bridge;
+export default BridgeMain;
