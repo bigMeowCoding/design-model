@@ -7,11 +7,14 @@ interface Props {}
 const Main: FC<Props> = () => {
   return (
     <div>
-      <Button type="link" block href="/Bridge">
+      <Button type="link" block href="/bridge">
         桥接模式
       </Button>
-      <Button type="link" block href="/Builder">
+      <Button type="link" block href="/builder">
         建造者模式
+      </Button>
+      <Button type="link" block href="/single">
+        单例模式
       </Button>
     </div>
   );

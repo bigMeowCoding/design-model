@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import BridgeMain from "./src/pages/bridge";
 import BuilderMain from "./src/pages/builder";
 import Main from "./src/pages";
+import SingleMain from "./src/pages/single";
 
 const router = createBrowserRouter([
   {
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
   {
     path: "/builder",
     element: <BuilderMain />,
+  },
+  {
+    path: "/single",
+    element: <SingleMain />,
   },
   {
     path: "/",
