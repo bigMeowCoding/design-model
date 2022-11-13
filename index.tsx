@@ -6,6 +6,7 @@ import BridgeMain from "./src/pages/bridge";
 import BuilderMain from "./src/pages/builder";
 import Main from "./src/pages";
 import SingleMain from "./src/pages/single";
+import CompositionMain from "./src/pages/composition";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
   {
     path: "/single",
     element: <SingleMain />,
+  },
+  {
+    path: "/composition",
+    element: <CompositionMain />,
   },
   {
     path: "/",

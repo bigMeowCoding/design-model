@@ -16,6 +16,9 @@ const Main: FC<Props> = () => {
       <Button type="link" block href="/single">
         单例模式
       </Button>
+      <Button type="link" block href="/composition">
+        组合模式
+      </Button>
     </div>
   );
 };
