@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { FC } from "react";
 
-import _ from "lodash-es";
 import { isPromise } from "../../common/utils/validate/isPromise";
 interface Props {}
 type OrderType = 1 | 2 | 3;
@@ -21,7 +20,6 @@ class Chain {
     }
     if (isPromise(ret) && this.successor) {
       ret.then((d: any) => {
-        console.log("d===", d);
         this.successor?.passRequest(...args);
       });
     }
