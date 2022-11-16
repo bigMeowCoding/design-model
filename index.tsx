@@ -7,6 +7,7 @@ import BuilderMain from "./src/pages/builder";
 import Main from "./src/pages";
 import SingleMain from "./src/pages/single";
 import CompositionMain from "./src/pages/composition";
+import ChainMain from "./src/pages/chain";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
   {
     path: "/composition",
     element: <CompositionMain />,
+  },
+  {
+    path: "/chain",
+    element: <ChainMain />,
   },
   {
     path: "/",
