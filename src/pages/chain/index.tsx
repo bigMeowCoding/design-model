@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FC } from "react";
 
+import _ from "lodash-es";
+import { isPromise } from "../../common/utils/validate/isPromise";
 interface Props {}
 type OrderType = 1 | 2 | 3;
 const successOrder = "next";
@@ -9,12 +11,19 @@ class Chain {
   constructor(private fn: Function) {}
   setSuccessor(chain: Chain) {
     this.successor = chain;
+    return this.successor;
   }
   passRequest(...args: any[]) {
     const ret = this.fn.apply(this, args);
 
     if (ret === successOrder && this.successor) {
       this.successor.passRequest(...args);
+    }
+    if (isPromise(ret) && this.successor) {
+      ret.then((d: any) => {
+        console.log("d===", d);
+        this.successor?.passRequest(...args);
+      });
     }
   }
 }
@@ -47,19 +56,39 @@ const ChainMain: FC<Props> = () => {
       console.log("无库存");
     }
   }
-  const order500Chain = new Chain(order500);
-  const order200Chain = new Chain(order200);
-  const orderNormalChain = new Chain(orderNormal);
 
-  order200Chain.setSuccessor(orderNormalChain);
-  order500Chain.setSuccessor(order200Chain);
+  useEffect(() => {
+    const order500Chain = new Chain(order500);
+    const order200Chain = new Chain(order200);
+    const orderNormalChain = new Chain(orderNormal);
 
-  order500Chain.passRequest(1, true, true);
-  order500Chain.passRequest(1, false, true);
-  order500Chain.passRequest(2, true, true);
-  order500Chain.passRequest(2, false, true);
-  order500Chain.passRequest(3, true, true);
-  order500Chain.passRequest(3, true, false);
+    order200Chain.setSuccessor(orderNormalChain);
+    order500Chain.setSuccessor(order200Chain);
+
+    order500Chain.passRequest(1, true, true);
+    order500Chain.passRequest(1, false, true);
+    order500Chain.passRequest(2, true, true);
+    order500Chain.passRequest(2, false, true);
+    order500Chain.passRequest(3, true, true);
+    order500Chain.passRequest(3, true, false);
+  }, []);
+
+  useEffect(() => {
+    // 异步
+    const chain1 = new Chain((a: number, b: number) => {
+      console.log("chain1over");
+      return new Promise((res) => {
+        setTimeout(() => {
+          res(a + b);
+        }, 1000);
+      });
+    });
+    const chain2 = new Chain((c: number) => {
+      console.log("chain2over", c);
+    });
+    chain1.setSuccessor(chain2);
+    chain1.passRequest(1, 2);
+  }, []);
   return <div>职责链模式</div>;
 };
 
