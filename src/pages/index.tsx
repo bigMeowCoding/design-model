@@ -22,6 +22,9 @@ const Main: FC<Props> = () => {
       <Button type="link" block href="/chain">
         职责链模式
       </Button>
+      <Button type="link" block href="/decorator">
+        装饰者模式
+      </Button>
     </div>
   );
 };

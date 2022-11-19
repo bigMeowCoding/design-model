@@ -8,6 +8,7 @@ import Main from "./src/pages";
 import SingleMain from "./src/pages/single";
 import CompositionMain from "./src/pages/composition";
 import ChainMain from "./src/pages/chain";
+import DecoratorMain from "./src/pages/decorator";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
   {
     path: "/composition",
     element: <CompositionMain />,
+  },
+  {
+    path: "/decorator",
+    element: <DecoratorMain />,
   },
   {
     path: "/chain",
