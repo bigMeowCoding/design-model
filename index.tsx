@@ -9,6 +9,7 @@ import SingleMain from "./src/pages/single";
 import CompositionMain from "./src/pages/composition";
 import ChainMain from "./src/pages/chain";
 import DecoratorMain from "./src/pages/decorator";
+import ProxyMain from "./src/pages/proxy";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,7 @@ const router = createBrowserRouter([
     path: "/chain",
     element: <ChainMain />,
   },
+  { path: "/proxy", element: <ProxyMain /> },
   {
     path: "/",
     element: <Main />,
